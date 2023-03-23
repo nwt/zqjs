@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8" />
+        <title>Zed Wasm</title>
+    </head>
+
+    <style>
+        label {
+            display: block;
+        }
+
+        textarea {
+            display: block;
+        }
+    </style>
+
+    <body>
+        <script type="module">
+            import zq from './index.js'
+            globalThis.run = async () => {
+                const program = document.getElementById("program").value
+                const input = document.getElementById("input").value
+                const inputFormat = document.getElementById("inputFormat").value
+                const outputFormat = document.getElementById("outputFormat").value
+                const output = await zq({ program, input, inputFormat, outputFormat }).catch(err => err.toString())
+                document.getElementById("output").value = output
+            }
+        </script>
+
+        <label for="program">Zed Program</label>
+        <textarea id="program" autofocus>yield this+1</textarea>
+
+        <br>
+
+        <label for="input">Input</label>
+        <textarea id="input">1 2 3</textarea>
+
+        <br>
+
+        <label for="inputFormat">Input Format</label>
+        <textarea id="inputFormat"></textarea>
+
+        <label for="outputFormat">Output Format</label>
+        <textarea id="outputFormat"></textarea>
+
+        <br>
+
+        <label for="output">Output</label>
+        <textarea id="output"></textarea>
+
+        <button id="run" onclick="run();">Run</button>
+    </body>
+
+</html>

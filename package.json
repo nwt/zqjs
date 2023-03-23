@@ -1,0 +1,10 @@
+{
+  "name": "zqjs",
+  "scripts": {
+    "build": "GOARCH=wasm GOOS=js go build -tags=noasm -o dist/main.wasm src/main.go && cp src/index.js node_modules/golang-wasm/src/bridge.js $(go env GOROOT)/misc/wasm/wasm_exec.js dist"
+  },
+  "license": "BSD-3-Clause",
+  "devDependencies": {
+    "golang-wasm": "github:teamortix/golang-wasm#master"
+  }
+}
